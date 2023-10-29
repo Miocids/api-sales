@@ -29,6 +29,7 @@ class NoteRepository extends BaseRepository
                     });
                 });
             })
+            ->latest()
              ->when(\request("page"), function ($query){
                 return $query->paginate(\request("to"));
             },function ($query){
@@ -58,6 +59,15 @@ class NoteRepository extends BaseRepository
         return $this->save([
             "id" => $id
         ],$attributes);
+    }
+
+    public function getByCustomerAndDate($id, $date): mixed
+    {
+        return $this->getRepository()
+        ->query()
+        ->whereCustomerId($id)
+        ->where("date", $date)
+        ->first();
     }
 
 }

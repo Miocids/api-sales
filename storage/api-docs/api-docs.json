@@ -1524,6 +1524,403 @@
                 ]
             }
         },
+        "/api/v1/note-items": {
+            "get": {
+                "tags": [
+                    "v1/note-items"
+                ],
+                "summary": "NoteItem Display",
+                "description": "Display a listing of the resource.",
+                "operationId": "e1d577a6e88c1ee9cafd746b8466ae23",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "This flag is to show the NoteItem by status",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Indicates the page to display in the pager",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "to",
+                        "in": "query",
+                        "description": "Indicates the limit of information to display per page by default showed 15 register",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": [],
+                        "company": [],
+                        "user": [],
+                        "domain": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "v1/note-items"
+                ],
+                "summary": "NoteItem Store",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "2960014aaa349ff7e40ff09d353b7e46",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "file",
+                                    "customer",
+                                    "item",
+                                    "quantity"
+                                ],
+                                "properties": {
+                                    "file": {
+                                        "description": "File to upload",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "customer": {
+                                        "description": "Se envía el id del cliente, este se obtiene del endpoint v2/customers",
+                                        "type": "string"
+                                    },
+                                    "item": {
+                                        "description": "Se envía el id del item, este se obtiene del endpoint v2/items",
+                                        "type": "string"
+                                    },
+                                    "quantity": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": [],
+                        "company": [],
+                        "user": [],
+                        "domain": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/note-items/{id}": {
+            "get": {
+                "tags": [
+                    "v1/note-items"
+                ],
+                "summary": "NoteItem Spedified",
+                "description": "Display the specified resource",
+                "operationId": "bedcdb01b0b125bb5d81666f10aab2a3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Display the specified resource",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": [],
+                        "company": [],
+                        "user": [],
+                        "domain": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "v1/note-items"
+                ],
+                "summary": "NoteItem Update",
+                "description": "Update the specified resource in storage.",
+                "operationId": "493e6c4a64906adf9cc34925d483ca5d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fields1",
+                                    "fields2",
+                                    "fields3"
+                                ],
+                                "properties": {
+                                    "fields1": {
+                                        "type": "string"
+                                    },
+                                    "fields2": {
+                                        "type": "boolean"
+                                    },
+                                    "fields3": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": [],
+                        "company": [],
+                        "user": [],
+                        "domain": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "v1/note-items"
+                ],
+                "summary": "NoteItem Delete",
+                "description": "Remove the specified resource from storage",
+                "operationId": "8ee9609adc15cd83c8cfb9d1546c1c69",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": [],
+                        "company": [],
+                        "user": [],
+                        "domain": []
+                    }
+                ]
+            }
+        },
         "/api/v1/users": {
             "get": {
                 "tags": [
