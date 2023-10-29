@@ -38,6 +38,14 @@ class NoteItemController extends Controller
      *      description="This flag is to show the NoteItem by status",
      *      @OA\Schema(type="boolean")
      *   ),
+     * 
+     *  @OA\Parameter(
+     *      name="text",
+     *      in="query",
+     *      required=false,
+     *      description="Filtrado de campos sku y precio",
+     *      @OA\Schema(type="string")
+     *   ),
      *
      *  @OA\Parameter(
      *      name="page",

@@ -1543,6 +1543,15 @@
                         }
                     },
                     {
+                        "name": "text",
+                        "in": "query",
+                        "description": "Filtrado de campos sku y precio",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
                         "name": "page",
                         "in": "query",
                         "description": "Indicates the page to display in the pager",
@@ -1784,24 +1793,31 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "fields1",
-                                    "fields2",
-                                    "fields3"
+                                    "customer",
+                                    "item",
+                                    "quantity"
                                 ],
                                 "properties": {
-                                    "fields1": {
-                                        "type": "string"
-                                    },
-                                    "fields2": {
-                                        "type": "boolean"
-                                    },
-                                    "fields3": {
+                                    "customer": {
                                         "properties": {
                                             "id": {
+                                                "description": "Se envía el id del cliente, este se obtiene del endpoint v2/customers",
                                                 "type": "string"
                                             }
                                         },
                                         "type": "object"
+                                    },
+                                    "item": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "Se envía el id del item, este se obtiene del endpoint v2/items",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "quantity": {
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"

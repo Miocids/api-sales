@@ -21,8 +21,17 @@ class NoteItemRepository extends BaseRepository
     {
         return $this->getRepository()
             ->query()
-            ->when(\request("key"), function ($query){
-                return $query->where("key",\request("key"));
+            ->when(\request("text"), function ($query){
+                return $query->where(function ($subQuery){
+                    return $subQuery->whereHas('item', function($subQuery){
+                        return $subQuery->whereLike(["name", "sku","price"], \request()->string("text"));
+                    })
+                    ->orWhereHas('note', function($subQuery){
+                        return $subQuery->whereHas('customer', function($subSubQuery){
+                            return $subSubQuery->whereLike(['name','email'], \request()->string("text")) ;
+                        });
+                    });
+                });
             })
             ->when(\request("status"), function ($query){
                 return $query->where("status",\request()->boolean("status"));

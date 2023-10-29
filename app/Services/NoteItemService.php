@@ -69,7 +69,7 @@ class NoteItemService extends NoteItemRepository
     {
         DB::beginTransaction();
         try {
-            $item = (new ItemRepository())->getById(\request("item"));
+            $item = (new ItemRepository())->getById(\request("item.id"));
             $totalCop = (\request("quantity") * $item?->price);
             $date = \now()->toDateString();
 
@@ -99,7 +99,7 @@ class NoteItemService extends NoteItemRepository
             $decodedUsd = json_decode($totals[0], true);
             $decodedEur = json_decode($totals[1], true);
             $notePayload = [
-                "customer_id"   => \request("customer"),
+                "customer_id"   => \request("customer.id"),
                 "date"          => $date,
                 "total"         => $totalCop
             ];
@@ -107,7 +107,7 @@ class NoteItemService extends NoteItemRepository
 
             $payload = \request()->merge([
                 "note_id"   => $note?->getKey(),
-                "item_id"   => \request("item"),
+                "item_id"   => \request("item.id"),
                 "total"     => $totalCop,
                 "total_usd" => $decodedUsd["result"],
                 "total_eur" => $decodedEur["result"],
