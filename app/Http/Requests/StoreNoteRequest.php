@@ -11,7 +11,7 @@ class StoreNoteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class StoreNoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "customer.id"   => "required|uuid",
+            "date"          => "required|date",
+            "total"         => "required|numeric"
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            "customer.id"   => "cliente",
+            "date"          => "fecha",
+            "total"         => "total"
         ];
     }
 }

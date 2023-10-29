@@ -7,6 +7,7 @@ use App\Http\Controllers\API\V1\{
     UserController,
     CustomerController,
     ItemController,
+    NoteController,
 };
 
 /*
@@ -39,6 +40,7 @@ Route::middleware(['auth:api'])->group( function () {
     Route::apiResource("users",UserController::class)->parameters(["users" => "id"]);
     Route::apiResource("customers",CustomerController::class)->parameters(["customers" => "id"]);
     Route::apiResource("items",ItemController::class)->parameters(["items" => "id"]);
+    Route::apiResource("notes",NoteController::class)->parameters(["notes" => "id"]);
 
 
 

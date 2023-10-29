@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('notes', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->index()->primary();
+            $table->foreignIdFor(\App\Models\Customer::class)->constrained();
+            $table->date('date');
+            $table->decimal('total', 22, 4)->default(0);
+            $table->string('created_by');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
