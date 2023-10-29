@@ -20,7 +20,6 @@ class NoteItemResource extends JsonResource
             "total"         => $this->resource->total,
             "total_usd"     => $this->resource->total_usd,
             "total_eur"     => $this->resource->total_eur,
-            "currency"      => $this->resource->currency,
             "attach"        => $this->resource->attach,
             "note"          => new NoteResource($this->resource->note),
             "item"          => new ItemResource($this->resource->item),
