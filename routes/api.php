@@ -2,6 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\V1\{
+    AuthController,
+    UserController,
+    CustomerController,
+    ItemController,
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +20,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix("/auth/")->group(function (){
+    Route::controller(AuthController::class)->group(function (){
+        Route::post("sign-in","signIn")->name("sign-in");
+        Route::post("sign-up","signUp")->name("sign-up");
+        Route::post("forgot-password","forgot")->name("forgot");
+        Route::post("reset-password","reset")->name("reset");
+    });
+});
+
+Route::middleware(['auth:api'])->group( function () {
+    Route::prefix("/auth/")->group(function (){
+        Route::controller(AuthController::class)->group(function (){
+            Route::get("logout","logout")->name("logout");
+            Route::post("authorization","authorization")->name("authorization");
+        });
+    });
+    Route::apiResource("users",UserController::class)->parameters(["users" => "id"]);
+    Route::apiResource("customers",CustomerController::class)->parameters(["customers" => "id"]);
+    Route::apiResource("items",ItemController::class)->parameters(["items" => "id"]);
+
+
+
 });

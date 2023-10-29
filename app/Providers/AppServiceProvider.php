@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Mixins\QueryBuilder;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Builder::mixin(new QueryBuilder());
     }
 }
